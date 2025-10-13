@@ -1,0 +1,49 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class ShoppingListProgram {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<String> shoppingList = getShoppingList(scanner);
+        displayShoppingList(shoppingList);
+        searchItem(shoppingList, scanner);
+        scanner.close();
+    }
+
+    // Method to get the shopping list from user input
+    public static List<String> getShoppingList(Scanner scanner) {
+        List<String> shoppingList = new ArrayList<>();
+        System.out.println("Enter up to 5 items for your shopping list (type 'done' to finish):");
+        for (int i = 0; i < 5; i++) {
+            System.out.print("Item " + (i + 1) + ": ");
+            String item = scanner.nextLine();
+            if (item.equalsIgnoreCase("done")) {
+                break;
+            }
+            shoppingList.add(item);
+        }
+        return shoppingList;
+    }
+
+    // Method to display the shopping list
+    public static void displayShoppingList(List<String> shoppingList) {
+        System.out.println("\nShopping List:");
+        for (String item : shoppingList) {
+            System.out.println("- " + item);
+        }
+        System.out.println("\nYou have " + shoppingList.size() + " items in your shopping list.");
+    }
+
+    // Method to search for an item in the shopping list
+    public static void searchItem(List<String> shoppingList, Scanner scanner) {
+        System.out.print("\nEnter an item to search for: ");
+        String searchTerm = scanner.nextLine();
+        if (shoppingList.contains(searchTerm)) {
+            System.out.println("Yes, '" + searchTerm + "' is in your shopping list.");
+        } else {
+            System.out.println("No, '" + searchTerm + "' is not in your shopping list.");
+        }
+    }
+}
